@@ -29,6 +29,11 @@ data so that it won't be erased if a container instance fails.
    sudo docker run -it -v mongodata:/data/db --name mongodb -d mongo
    ```
    ![Alt text](images/run_container.jpg "running the container")
+   
+   c. If a docker container already exists:
+   ```shell
+   docker container rm <container_id>
+   ```
 4. Now let's make sure the docker container with MongoDB is running. 
 For that we'll see the list of all running containers:
    ```shell
