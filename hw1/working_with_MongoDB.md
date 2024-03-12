@@ -9,6 +9,7 @@ apt install -y python3-pip
 pip install pymongo
 ```
 See the `PyMongo` version:
+
 ![Alt text](images/pymongo_version.jpg "version of pymongo")
 ### Creating database
 
