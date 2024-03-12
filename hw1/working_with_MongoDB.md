@@ -106,4 +106,13 @@ As we can see, the time it takes to make a select, increases.
 The reason for this is that the dataset contains few rows, 
 so adding the index doesn't improve the performance.
 
+We can also see query execution stats:
+```python
+dict(collection.find({'Sex': 'female', 'Survived': 0, 'Age': {"$gt": 20}}).explain())['executionStats']
+```
+
+![Alt text](images/stats.jpg)
+
+As we can see, the stats are same.
+
 [Next part](stopping_container.md)
