@@ -7,6 +7,7 @@ To install `PyMongo` of the latest version one needs to install following packag
 apt update
 apt install -y python3-pip
 pip install pymongo
+pip install pandas
 ```
 See the `PyMongo` version:
 
@@ -28,17 +29,25 @@ new_db = client.test_database  # Make a new database
 ```
 
 ### Fill database with data
-> I'm the king of the world!    
-> © Jack Dawson, Titanic
 
-For filling the database I will use [Titanic dataset](https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/problem12.html).
+For filling the database I will use [Crimes dataset](https://catalog.data.gov/dataset/crime-data-from-2020-to-present).
 
-To get a collection:
+Upload data from host to container:
+```shell
+docker cp ./dataset/crime_data.csv <container_id>:/crime_data.csv
+```
 
-  ```python
-  collection = new_db.test_collection
-  collection.insert_many(passengers)  # Passengers - json with passenger data
-  ```
+
+To get a collection and insert data:
+
+```python
+import pandas as pd
+
+
+collection = new_db.test_collection
+data = pd.read_csv('/crime_data.csv')
+collection.insert_many(data.to_dict('records'))
+```
 
 To see the database table names:
 ```python
@@ -60,9 +69,9 @@ new_db.list_collection_names()
 
 **UPDATE**
 
-Now, as we can see, Mr. Braund didn't manage to survive. Let's revive him:
+Let's change number of area in the first row with `DR_NO = 190326475`
 ```python
-collection.update_one({'Name': 'Mr. Owen Harris Braund'},{'$set': {'Survived': 1}})
+collection.update_one({'DR_NO': 190326475},{'$set': {'AREA': 1}})
 ```
 ![Alt text](images/update.jpg)
 
@@ -70,49 +79,44 @@ collection.update_one({'Name': 'Mr. Owen Harris Braund'},{'$set': {'Survived': 1
 
 To delete the information from a table one can use:
 ```python
-collection.delete_one({'Name': 'Mr. Owen Harris Braund'})
+collection.delete_one({'DR_NO': 190326475})
 ```
 ![Alt text](images/delete.jpg)
 
 **COUNT**
 
-Let's see, how many females died:
+Let's see, how many victims over 20 is in dataset:
 ```python
-collection.count_documents({'Sex': 'female', 'Survived': 0})
+collection.count_documents({'Vict Age': {"$gt": 20}})
 ```
 ![Alt text](images/count.jpg)
 
 **INDEXES**
 
-To compare the time I'll run this code:
+Add indexes:
 ```python
-from time import time
-
-collection.drop_indexes()
-start_time = time()
-print(collection.count_documents({'Sex': 'female', 'Survived': 0}))
-finish_time = time()
-print(f"Time spent: {finish_time - start_time}")
-
-collection.create_index(keys='Name', name='new_index', unique=True)
-start_time = time()
-print(collection.count_documents({'Sex': 'female', 'Survived': 0}))
-finish_time = time()
-print(f"Time spent: {finish_time - start_time}")
+collection.create_index(keys=['Vict Sex', 'Vict Age'], name='new_index')
 ```
+
+Drop indexes:
+```python
+collection.drop_indexes()
+```
+
+To compare the time we can see query execution stats:
+```python
+dict(collection.find({'Vict Sex': 'M', 'Vict Age': {"$gt": 20}}).explain())['executionStats']
+```
+
 ![Alt text](images/indexes.jpg)
 
-As we can see, the time it takes to make a select, increases. 
-The reason for this is that the dataset contains few rows, 
-so adding the index doesn't improve the performance.
+As we can see from `executionTimeMillis`, adding index helps to slightly improve performance.
 
-We can also see query execution stats:
+**DROP**
+
+Drop database:
+
 ```python
-dict(collection.find({'Sex': 'female', 'Survived': 0, 'Age': {"$gt": 20}}).explain())['executionStats']
+client.drop_database('test_database')
 ```
-
-![Alt text](images/stats.jpg)
-
-As we can see, the stats are same.
-
 [Next part](stopping_container.md)
