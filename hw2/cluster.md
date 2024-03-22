@@ -61,7 +61,8 @@ redis-cli --cluster create 172.20.0.2:6379 172.20.0.3:6379 172.20.0.4:6379 172.2
 
 ![Alt text](images/cluster_running.jpg)
 
-> [!NOTE] Note that ip-addresses may change after restarting containers.
+> [!NOTE]
+> Note that ip-addresses may change after restarting containers.
 
 Check if everything is ok:
 ```shell
