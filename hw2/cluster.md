@@ -56,12 +56,12 @@ docker inspect <container_id> | grep IPAddress
 | 6    | 172.20.0.7 |
 
 ```shell
-redis-cli --cluster create 172.20.0.2:6379 172.20.0.3:6379 172.20.0.4:6379 172.20.0.5:6379 172.20.0.6:6379 172.20.0.7:6379 --cluster-replicas```
+redis-cli --cluster create 172.20.0.2:6379 172.20.0.3:6379 172.20.0.4:6379 172.20.0.5:6379 172.20.0.6:6379 172.20.0.7:6379 --cluster-replicas
 ```
 
 ![Alt text](images/cluster_running.jpg)
 
-> Note that ip-addresses may change after restarting containers.
+> [!NOTE] Note that ip-addresses may change after restarting containers.
 
 Check if everything is ok:
 ```shell
