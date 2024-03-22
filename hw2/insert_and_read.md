@@ -88,4 +88,4 @@ Let's compare the results:
 **Conclusion**: insertion in list is the fastest. Reading from sorted set is fastest, but only because we get a sequence of elements using range from 0 to num_keys. 
 If we use per-element get, the best will be, undoubtedly, hash set.
 
-[Next part](clusters.md)
+[Next part](cluster.md)
