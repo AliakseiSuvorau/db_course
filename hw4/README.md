@@ -1,0 +1,17 @@
+# Contents
+
+* [Sphinx overview & history](history/history.md)
+* [Tools to interact with Sphinx](tools/tools.md)
+* [Sphinx engine](db_engine/engine.md)
+* [Sphinx query language](queries/query_lang.md)
+* [Distributed searching in Sphinx](distributed/distributed.md)
+* [Indexing in Sphinx](indexes/indexes.md)
+* [Query execution](query_exec/query_exec.md)
+* [Query planner](query_plan/query_plan.md)
+* [Transactions in Sphinx](transactions/transactions.md) 
+* [Data recovery](recovery/recovery.md)
+* [Data sharding](sharding/sharding.md)
+* [Data mining, DWH and OLAP](data_mining_DWH_OLAP/data_mining_DWH_OLAP.md)
+* [Data security](security/security.md)
+* [Community and developers](developers/developer.md)
+* [Useful links](additional_info/additional_info.md)
