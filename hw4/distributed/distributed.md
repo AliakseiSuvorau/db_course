@@ -6,7 +6,7 @@ Sphinx has **distributed searching** capabilities. Distributed searching is
 useful to improve query latency (i.e. search time) and throughput (i.e. 
 max queries/sec) in multi-server, multi-CPU or multi-core environments. 
 This is essential for applications which need to search through huge 
-amounts data.
+amounts of data.
 
 The key idea is to make horizontal partition of searched data across search
 nodes and then process it in parallel.

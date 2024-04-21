@@ -14,4 +14,9 @@ Contributors:
 * [MartyIX](https://github.com/MartyIX)
 * [Philippe Rivière](https://github.com/Fil)
 
+### Andrew Aksyonoff
+
+* Enjoys [photography](https://www.flickr.com/people/shodanium/)
+* Author of the [book](https://www.oreilly.com/library/view/introduction-to-search/9780596809546/?_gl=1*1jisdjv*_ga*MTI0NDIyMzY3NC4xNzA5NDk4MTcy*_ga_092EL089CH*MTcxMzcxNDc3MS4zLjAuMTcxMzcxNDc3NS41Ni4wLjA.) about searching in Sphinx
+
 [Previous page](../security/security.md) | [Contents](../README.md) | [Next page](../additional_info/additional_info.md)
